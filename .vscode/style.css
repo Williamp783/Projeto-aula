@@ -26,13 +26,15 @@
 /*body, corpo da pag, fonte*/
 body {
   background: var(--bg-url) no-repeat center top/cover;
+  height: 100vh;
 }
 
 body * {font-family: 'Inter', sans-serif;
 color: var(--text-color);
 }
 #container { 
-  width: 360px;
+  width: 100%;
+  max-width: 588px;
   margin: 56px auto 0px;
   padding: 0 24px;
 }
@@ -57,6 +59,7 @@ color: var(--text-color);
   position: relative;
   width: 64px ;
   margin: 4px auto;
+  
 }
 
 /*posição e formato do botão*/
@@ -66,6 +69,7 @@ color: var(--text-color);
   background: white var(--switch-bg-url) no-repeat center; 
   border: 0;
   border-radius: 50%;
+  animation: slide-out 0.4s forwards;
 
 /*posição do botão na barra*/
   position: absolute;
@@ -74,10 +78,14 @@ color: var(--text-color);
   z-index: 1;
   transform: translateY(-50%);
 }
+
 /*transição do light para o black ou black para light*/
 .light #switch button{
-  right: 0;
-  left: initial;
+  animation: slide-in 0.4s forwards;
+  
+}
+#switch button:hover{
+  outline: 8px solid var(--highlight-color);
 }
 
 
@@ -155,3 +163,33 @@ ul li a:hover{
     text-align: center;
     font-size: 16px;
   }
+
+/*media queries*/
+
+@media (min-width: 700px){
+:root{
+   --bg-url: url(./assets/bg-desktop.jpg);
+}
+.light{
+  --bg-url: url(./assets/bg-desktop-light.jpg);
+}
+}
+  
+
+/*animation*/
+@keyframes slide-in{
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+@keyframes slide-out{
+  from {
+    left: 50%
+  }
+  to {
+    left: 0;
+  }
+}
